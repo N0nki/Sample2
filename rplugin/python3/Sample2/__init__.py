@@ -1,6 +1,6 @@
 import pynvim
 
-@pynvim.Plugin
+@pynvim.plugin
 class Sample2(object):
 
     def __init__(self, nvim):
