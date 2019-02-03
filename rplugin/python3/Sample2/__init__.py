@@ -12,3 +12,6 @@ class Sample2(object):
     @pynvim.command('Tanomu')
     def echo_message(self):
         self._echo('naiteru')
+
+def hello():
+    pass
