@@ -7,7 +7,7 @@ class Sample2(object):
         self.nvim = nvim
 
     def _echo(self, msg):
-        self.nvim.command("echo '" + msg + "'")
+        self.nvim.command("echo '" + str(msg) + "'")
 
     @pynvim.command('Tanomu')
     def echo_message(self):
