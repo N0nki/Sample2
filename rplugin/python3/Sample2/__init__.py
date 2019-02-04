@@ -17,12 +17,14 @@ class Sample2(object):
 
     def get_headers(self):
         headers = {}
+        matched_list = []
         for i in range(1, self.nvim.call("line", "$")):
             line = self.nvim.call("getline", i)
             match = re.match(r"^(#+)(.+)$", line)
+            matched_list.append(line)
             if match:
                 headers[match.group(2)] = match.group(1)
-        return headers
+        return matched_list
 
     @pynvim.command('ShowHeader')
     def show_headers(self):
@@ -30,7 +32,9 @@ class Sample2(object):
         self.nvim.command("vnew")
         self.nvim.command("setlocal buftype=nofile bufhidden=hide nolist nonumber nomodifiable wrap")
         self.nvim.command('setlocal modifiable')
-        window_width = self.nvim.current.window.width
-        headers = self.get_headers()
-        for text, header in headers:
-            self.nvim.current.buffer.append("{}, level{}".format(text, len(header)), 0)
+        matched_list = self.get_headers()
+        for matched in matched_list:
+            self.nvim.current.buffer.append(matched, 0)
+        # headers = self.get_headers()
+        # for text, header in headers:
+        #     self.nvim.current.buffer.append("{}, level{}".format(text, len(header)), 0)
