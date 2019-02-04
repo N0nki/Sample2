@@ -11,7 +11,5 @@ class Sample2(object):
 
     @pynvim.command('Tanomu')
     def echo_message(self):
-        self._echo('naiteru')
-
-def hello():
-    pass
+        current_bufnr = self.nvim.call("bufnr", "%")
+        self._echo(current_bufnr)
