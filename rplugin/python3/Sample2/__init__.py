@@ -31,5 +31,5 @@ class Sample2(object):
         self.nvim.command("vnew")
         self.nvim.command("setlocal buftype=nofile bufhidden=hide nolist nonumber nomodifiable wrap")
         self.nvim.command('setlocal modifiable')
-        for text, header in headers:
+        for text, header in headers.items():
             self.nvim.current.buffer.append("{}, level{}".format(text, len(header)), 0)
