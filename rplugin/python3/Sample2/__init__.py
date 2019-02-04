@@ -28,11 +28,11 @@ class Sample2(object):
 
     @pynvim.command('ShowHeader')
     def show_headers(self):
+        matched_list = self.get_headers()
         self.nvim.command("setlocal splitright")
         self.nvim.command("vnew")
         self.nvim.command("setlocal buftype=nofile bufhidden=hide nolist nonumber nomodifiable wrap")
         self.nvim.command('setlocal modifiable')
-        matched_list = self.get_headers()
         for matched in matched_list:
             self.nvim.current.buffer.append(matched, 0)
         # headers = self.get_headers()
